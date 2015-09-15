@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\contentFile;
 use App\service;
 use Illuminate\Http\Request;
 
@@ -21,7 +22,7 @@ class servicesController extends Controller
      */
     public function index()
     {
-        $services = service::with('serviceCategory')->get();
+        $services = service::all();
         return View::make('admin.services.index', compact('services'));
     }
 
@@ -74,8 +75,12 @@ class servicesController extends Controller
     public function edit($id)
     {
         $service=service::find($id);
+//dd($service);
+        $contents = service::find($id)->contentFiles()->get();
 
-        return View::make('admin.services.edit',compact('service'));
+//dd($contents);
+
+        return View::make('admin.services.edit',compact('service','contents'));
     }
 
     /**
@@ -130,5 +135,32 @@ class servicesController extends Controller
         service::destroy($id);
 
         return Redirect::route('admin.services.index');
+    }
+
+    public function showcontents(Request $r)
+    {
+        $contents = contentFile::all();
+        $id = $r['id'];
+        $service = service::find($id);
+        return View::make('admin.services._partials.selectcontent', compact('contents','service'));
+    }
+
+    public function storecontent($id,$cid)
+    {
+        $service=service::find($id);
+        $service->contentFiles()->attach($cid);
+
+        $contents = service::find($id)->contentFiles()->get();
+
+        return View::make('admin.services.edit',compact('service','contents'));
+    }
+
+    public function removecontent($id,$cid)
+    {
+        service::find($id)->contentFiles()->detach($cid);
+
+        $service=service::find($id);
+        $contents = service::find($id)->contentFiles()->get();
+        return View::make('admin.services.edit',compact('service','contents'));
     }
 }

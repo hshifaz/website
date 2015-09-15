@@ -12,4 +12,9 @@ class contentFile extends Model
     ];
 
     protected $fillable = ['desc','link'];
+
+    public function services()
+    {
+        return $this->belongsToMany('App\service');
+    }
 }

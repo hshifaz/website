@@ -16,7 +16,7 @@ class CreateServicesTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('desc');
-            $table->integer('category_id');
+            $table->integer('service_category_id');
             $table->string('icon');
             $table->string('link');
             $table->string('featured');

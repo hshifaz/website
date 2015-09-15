@@ -74,8 +74,9 @@ class serviceCategoriesController extends Controller
     public function edit($id)
     {
         $serviceCategory=serviceCategory::find($id);
+        $services=serviceCategory::find($id)->services;
 
-        return View::make('admin.serviceCategories.edit',compact('serviceCategory'));
+        return View::make('admin.serviceCategories.edit',compact('serviceCategory','services'));
     }
 
     /**

@@ -20,6 +20,6 @@ class serviceCategory extends Model
 
     public function services()
     {
-        return $this->hasMany('service');
+        return $this->hasMany('App\service');
     }
 }

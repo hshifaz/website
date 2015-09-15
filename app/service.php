@@ -26,4 +26,9 @@ class service extends Model
     {
         return $this->belongsTo('serviceCategory');
     }
+
+    public function contentFiles()
+    {
+        return $this->belongsToMany('App\contentFile');
+    }
 }

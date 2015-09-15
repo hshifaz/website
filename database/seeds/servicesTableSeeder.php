@@ -45,7 +45,7 @@ class servicesTableSeeder extends Seeder
             \App\service::create([
                 'name' => $name,
                 'desc' => $faker->paragraph,
-                'category_id' => $cat,
+                'service_category_id' => $cat,
                 'icon' => $faker->url,
                 'link' => $faker->url,
                 'featured' => rand(0,1),
