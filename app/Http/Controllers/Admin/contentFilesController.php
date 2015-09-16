@@ -1,11 +1,13 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
+
 use App\contentFile;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
@@ -94,11 +96,29 @@ class contentFilesController extends Controller
     public function update(Request $request, $id)
     {
         $contentFile = contentFile::findOrFail($id);
-
-        $validator=Validator::make($data= Input::all(),contentFile::$rules);
-
+        $data = Input::all();
+        //$validator=Validator::make($data,contentFile::$rules);
+        /*
         if($validator->fails()){
             return Redirect::back()->withErrors($validator)->withInput();
+        }
+*/
+        $old_file_name = $contentFile->link;
+        if(Input::hasFile('link')){
+            $dest = 'images/';
+            $name = str_random(10).'-'.Input::file('link')->getClientOriginalName();
+            Input::file('link')->move($dest,$name);
+
+            $old_file_name = $dest.'/'.$old_file_name;
+
+            if(File::exists($old_file_name)){
+                File::delete($old_file_name);
+            }
+
+            $data['link'] = $name;
+        }
+        else{
+            dd($data);
         }
 
         /**

@@ -1,8 +1,8 @@
 <ul>
     <li>
-        {!! \Collective\Html\FormFacade::label('link','File Name') !!}
+        {!! \Collective\Html\FormFacade::label('link','Select File') !!}
         {!! \Collective\Html\FormFacade::file('link') !!}
-
+        {!! $errors->first('link','<p class="error">:message</p>') !!}
         <?php
         if(isset($contentFile)){
         ?>
@@ -11,7 +11,7 @@
         <?php
         }
         ?>
-        {!! $errors->first('link','<p class="error">:message</p>') !!}
+
     </li>
 
     <li>
