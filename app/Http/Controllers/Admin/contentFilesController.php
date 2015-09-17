@@ -117,9 +117,6 @@ class contentFilesController extends Controller
 
             $data['link'] = $name;
         }
-        else{
-            dd($data);
-        }
 
         /**
          * Check if Request param contains
@@ -156,5 +153,11 @@ class contentFilesController extends Controller
         contentFile::destroy($id);
 
         return Redirect::route('admin.contentFiles.index');
+    }
+
+    public function showallcontents()
+    {
+        $contentFiles = contentFile::all();
+        return View::make('admin.contentFiles.contentFilesDash',compact('contentFiles'));
     }
 }

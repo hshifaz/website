@@ -139,8 +139,30 @@ class servicesController extends Controller
 
     public function showcontents(Request $r)
     {
-        $contents = contentFile::all();
         $id = $r['id'];
+        $allcontents = contentFile::all();
+        //$service =service::where('id','=',$id)->with('contentFiles')->get();
+
+        $contentsInService = service::find($id)->contentFiles()->get();
+
+
+        $contents = array();
+        foreach($allcontents as $content) {
+            $exists = false;
+            foreach($contentsInService as $contentInService) {
+                //dd($contentInService->id);
+                if ($content->id === $contentInService->id) {
+                    $exists=true;
+                }
+            }
+
+            if (!$exists) {
+                $contents[] = $content;
+            }
+        }
+        //dd($contents);
+
+
         $service = service::find($id);
         return View::make('admin.services._partials.selectcontent', compact('contents','service'));
     }
