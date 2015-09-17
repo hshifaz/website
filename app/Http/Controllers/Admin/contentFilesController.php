@@ -1,16 +1,18 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
+
 use App\contentFile;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\View;
-use App\Http\Controllers\Controller;
+
 class contentFilesController extends Controller
 {
     /**

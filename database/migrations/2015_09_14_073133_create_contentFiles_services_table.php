@@ -12,12 +12,12 @@ class CreateContentFilesServicesTable extends Migration
      */
     public function up()
     {
-        Schema::create('career_content_file', function(Blueprint $table){
+        Schema::create('content_file_service', function(Blueprint $table){
             $table->integer('content_file_id')->unsigned();
             $table->foreign('content_file_id')->references('id')->on('content_files');
 
-            $table->integer('career_id')->unsigned();
-            $table->foreign('career_id')->references('id')->on('careers');
+            $table->integer('service_id')->unsigned();
+            $table->foreign('service_id')->references('id')->on('services');
 
             $table->timestamps();
         });
@@ -30,6 +30,6 @@ class CreateContentFilesServicesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('career_content_file');
+        Schema::drop('content_file_service');
     }
 }
