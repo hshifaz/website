@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateContentFilesServicesTable extends Migration
+class CreateContentFilesTendersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,12 +12,12 @@ class CreateContentFilesServicesTable extends Migration
      */
     public function up()
     {
-        Schema::create('career_content_file', function(Blueprint $table){
+        Schema::create('content_file_tender', function(Blueprint $table){
             $table->integer('content_file_id')->unsigned();
             $table->foreign('content_file_id')->references('id')->on('content_files');
 
-            $table->integer('career_id')->unsigned();
-            $table->foreign('career_id')->references('id')->on('careers');
+            $table->integer('tender_id')->unsigned();
+            $table->foreign('tender_id')->references('id')->on('tenders');
 
             $table->timestamps();
         });
@@ -30,6 +30,6 @@ class CreateContentFilesServicesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('career_content_file');
+        Schema::drop('content_file_tenders');
     }
 }

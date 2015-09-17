@@ -8,13 +8,19 @@ class contentFile extends Model
 {
     public static $rules=[
         'desc'=>'string',
-        'link'=>'mimes:jpeg,png,gif',
+        'link'=>'mimes:jpeg,png,gif,pdf',
     ];
 
     protected $fillable = ['desc','link'];
 
-    public function services()
+    public function careers()
     {
-        return $this->belongsToMany('App\service');
+        return $this->belongsToMany('App\Career');
+    }
+
+    public function tenders()
+    {
+        return $this->belongsToMany('App\Tender');
     }
 }
+
