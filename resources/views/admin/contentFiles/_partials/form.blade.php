@@ -6,7 +6,7 @@
         <?php
         if(isset($contentFile)){
         ?>
-            <img src="/stelco_website/public/images/{{ $contentFile->link }}">
+        <img src="/images/{{ $contentFile->link }}">
 
         <?php
         }
@@ -25,4 +25,3 @@
         {!! \Collective\Html\FormFacade::submit('Save') !!}
     </li>
 </ul>
-
