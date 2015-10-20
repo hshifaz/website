@@ -1,5 +1,7 @@
 <ul>
     <li>
+        {!! \Collective\Html\FormFacade::hidden('contentRoute',route('admin.services.attachments'),array('id'=>'contentRoute')) !!} <!-- remove this line -->
+        {!! \Collective\Html\FormFacade::hidden('id',$service->id,array('id'=> 'id')) !!}
         {!! \Collective\Html\FormFacade::label('name','Name') !!}
         {!! \Collective\Html\FormFacade::text('name') !!}
         {!! $errors->first('name','<p class="error">:message</p>') !!}

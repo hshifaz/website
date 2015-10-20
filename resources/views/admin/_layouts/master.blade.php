@@ -13,6 +13,8 @@
     <!-- Theme style -->
     <link href="{!! asset('adminlte/css/AdminLTE.css') !!}" rel="stylesheet" type="text/css" />
 
+    <link href="{!! asset('assets/css/style.css') !!}" rel="stylesheet" type="text/css" />
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -415,6 +417,8 @@
 <script src="{!! asset('adminlte/js/bootstrap.min.js') !!}" type="text/javascript"></script>
 <!-- AdminLTE App -->
 <script src="{!! asset('adminlte/js/AdminLTE/app.js') !!}" type="text/javascript"></script>
+
+<script src="{!! asset('assets/js/service.js') !!}" type="text/javascript"></script>
 
 </body>
 </html>

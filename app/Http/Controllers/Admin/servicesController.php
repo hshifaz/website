@@ -139,6 +139,8 @@ class servicesController extends Controller
 
     public function showcontents(Request $r)
     {
+        //return array(['data'=>'text']);
+
         $id = $r['id'];
         $allcontents = contentFile::all();
         //$service =service::where('id','=',$id)->with('contentFiles')->get();
@@ -164,7 +166,12 @@ class servicesController extends Controller
 
 
         $service = service::find($id);
-        return View::make('admin.services._partials.selectcontent', compact('contents','service'));
+        $objs = array(
+            'service'=>$service,
+            'contents'=>$contents
+        );
+        return $objs;
+        //return View::make('admin.services._partials.selectcontent', compact('contents','service'));
     }
 
     public function storecontent($id,$cid)
@@ -174,15 +181,18 @@ class servicesController extends Controller
 
         $contents = service::find($id)->contentFiles()->get();
 
-        return View::make('admin.services.edit',compact('service','contents'));
+        //return View::make('admin.services.edit',compact('service','contents'));
+        return compact('contents');
     }
 
     public function removecontent($id,$cid)
     {
         service::find($id)->contentFiles()->detach($cid);
 
-        $service=service::find($id);
-        $contents = service::find($id)->contentFiles()->get();
-        return View::make('admin.services.edit',compact('service','contents'));
+        return Redirect::route('admin.services.edit',array('id'=>$id));
+
+        //$service=service::find($id);
+        //$contents = service::find($id)->contentFiles()->get();
+        //return View::make('admin.services.edit',compact('service','contents'));
     }
 }
